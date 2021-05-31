@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fece2f"
+    android:background="#dfe4ea"
     tools:context=".Register">
 
     <TextView
@@ -117,8 +117,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-
-        android:backgroundTint="@color/black"
+        android:backgroundTint="#57606f"
         android:text="Register"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

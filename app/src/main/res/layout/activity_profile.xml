@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".Profile">
 
     <LinearLayout
@@ -15,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="#fece2f"
+            android:background="#dfe4ea"
             android:padding="20dp">
 
            <androidx.cardview.widget.CardView
@@ -135,39 +134,39 @@
 
             <Button
                 android:id="@+id/btnUpdate"
-                android:layout_width="match_parent"
+                android:layout_width="374dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#fece2f"
+                android:backgroundTint="#57606f"
                 android:fontFamily="@font/bungee"
                 android:text="Update Information"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/changeProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#fece2f"
+                android:backgroundTint="#57606f"
                 android:fontFamily="@font/bungee"
                 android:text="Update Profile"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/resetPasswordLocal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#fece2f"
+                android:backgroundTint="#57606f"
                 android:fontFamily="@font/bungee"
                 android:text="Update Password"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#fece2f"
+                android:backgroundTint="#57606f"
                 android:fontFamily="@font/bungee"
                 android:text="Logout"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -56,18 +56,13 @@ public class Profile extends AppCompatActivity {
     DatabaseReference reference;
     StorageReference storageReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-
-
         reference = FirebaseDatabase.getInstance().getReference("users");
-
-
         changeProfileImage = findViewById(R.id.changeProfile);
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
 
@@ -84,8 +79,6 @@ public class Profile extends AppCompatActivity {
         update = findViewById(R.id.btnUpdate);
 
         storageReference = FirebaseStorage.getInstance().getReference();
-
-
 
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){
@@ -203,12 +196,7 @@ public class Profile extends AppCompatActivity {
     }
 
 
-
-
-
     public void update() {
-
-
         Map<String, Object> mapValue = new HashMap<>();
         mapValue.put("Company", fullName.getEditText().getText().toString());
         mapValue.put("Position", email.getEditText().getText().toString());
@@ -217,6 +205,5 @@ public class Profile extends AppCompatActivity {
         DatabaseReference dbf = reference.child(mAuth.getCurrentUser().getUid());
         dbf.updateChildren(mapValue);
         Toast.makeText(Profile.this, "Saved.", Toast.LENGTH_SHORT).show();
-
     }
 }

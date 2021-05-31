@@ -166,12 +166,6 @@ public class EditProfile extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(profileImageView);
                         Log.d("uri", String.valueOf(uri));
-//                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-//                                .setPhotoUri(uri)
-//                                .build();
-//
-//                        user.updateProfile(profileUpdates);
-
                     }
                 });
             }
