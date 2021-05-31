@@ -18,11 +18,20 @@
             android:background="#fece2f"
             android:padding="20dp">
 
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true" />
+           <androidx.cardview.widget.CardView
+               android:id="@+id/cardView"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               app:cardCornerRadius="50dp"
+               android:layout_centerVertical="true">
+               <ImageView
+                   android:id="@+id/profile_image"
+                   android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:src="@drawable/ic_baseline_account_circle_24"
+                   android:scaleType="centerCrop"
+                    />
+           </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/name"
@@ -30,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/profile_image"
+                android:layout_toRightOf="@id/cardView"
                 android:fontFamily="@font/bungee"
                 android:includeFontPadding="false"
                 android:text="rikimll"
@@ -43,7 +52,7 @@
                 android:layout_below="@id/name"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/profile_image"
+                android:layout_toRightOf="@id/cardView"
                 android:text="kiki"
                 android:textSize="14sp" />
 
@@ -51,7 +60,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="168dp"
             android:layout_marginTop="-100dp"
             android:padding="20dp"
 
@@ -149,15 +158,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Full Name">
+                android:hint="Company">
 
                 <com.google.android.material.textfield.TextInputEditText
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                    android:drawableLeft="@drawable/ic_baseline_business_24"
                     android:drawablePadding="10dp"
-                    android:text="Rikimkl"
+                    android:text="Ptit Software"
 
                     />
 
@@ -168,15 +177,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Email">
+                android:hint="Position">
 
                 <com.google.android.material.textfield.TextInputEditText
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_email_24"
+                    android:drawableLeft="@drawable/ic_baseline_business_center_24"
                     android:drawablePadding="10dp"
-                    android:text="Rikimkl@gmail.com" />
+                    android:text="Android Developer" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -184,13 +193,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Phone number">
+                android:hint="ID">
 
                 <com.google.android.material.textfield.TextInputEditText
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_local_phone_24"
+                    android:drawableLeft="@drawable/ic_baseline_perm_identity_24"
                     android:drawablePadding="10dp"
                     android:text="1231232"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
@@ -200,15 +209,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Password">
+                android:hint="Address">
 
                 <com.google.android.material.textfield.TextInputEditText
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_baseline_security_24"
+                    android:drawableLeft="@drawable/ic_baseline_location_on_24"
                     android:drawablePadding="10dp"
-                    android:text="1231232"></com.google.android.material.textfield.TextInputEditText>
+                    android:text="Ha Noi"></com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -217,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fece2f"
                 android:fontFamily="@font/bungee"
-                android:text="Update"
+                android:text="Update Information"
                 android:textColor="@color/black" />
 
             <Button
@@ -226,7 +235,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fece2f"
                 android:fontFamily="@font/bungee"
-                android:text="Change Profile"
+                android:text="Update Profile"
                 android:textColor="@color/black" />
 
             <Button
@@ -235,7 +244,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#fece2f"
                 android:fontFamily="@font/bungee"
-                android:text="Reset password"
+                android:text="Update Password"
                 android:textColor="@color/black" />
 
             <Button

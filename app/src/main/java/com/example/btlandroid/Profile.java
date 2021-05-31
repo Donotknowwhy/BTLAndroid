@@ -209,12 +209,11 @@ public class Profile extends AppCompatActivity {
 
 
         Map<String, Object> mapValue = new HashMap<>();
-        mapValue.put("email", email.getEditText().getText().toString());
-        mapValue.put("name", name.getText().toString());
-        mapValue.put("password", password.getEditText().getText().toString());
-        mapValue.put("phoneNo", phoneNo.getEditText().getText().toString());
-        mapValue.put("username", "username");
-        DatabaseReference dbf = reference.child("testUpdate");
+        mapValue.put("Company", fullName.getEditText().getText().toString());
+        mapValue.put("Position", email.getEditText().getText().toString());
+        mapValue.put("Address", password.getEditText().getText().toString());
+        mapValue.put("ID", phoneNo.getEditText().getText().toString());
+        DatabaseReference dbf = reference.child(mAuth.getCurrentUser().getUid());
         dbf.updateChildren(mapValue);
 
 
