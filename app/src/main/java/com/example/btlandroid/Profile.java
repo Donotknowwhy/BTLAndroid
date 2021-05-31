@@ -152,6 +152,7 @@ public class Profile extends AppCompatActivity {
             i.putExtra("fullName", name.getText().toString());
             i.putExtra("email", mail.getText().toString());
             i.putExtra("phone","1234");
+
                 startActivity(i);
             }
         });
@@ -215,7 +216,7 @@ public class Profile extends AppCompatActivity {
         mapValue.put("ID", phoneNo.getEditText().getText().toString());
         DatabaseReference dbf = reference.child(mAuth.getCurrentUser().getUid());
         dbf.updateChildren(mapValue);
-
+        Toast.makeText(Profile.this, "Saved.", Toast.LENGTH_SHORT).show();
 
     }
 }
