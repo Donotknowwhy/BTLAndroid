@@ -39,7 +39,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/cardView"
-                android:fontFamily="@font/bungee"
+                android:fontFamily="@font/impact"
                 android:includeFontPadding="false"
                 android:text="rikimll"
                 android:textSize="20sp" />
@@ -70,16 +70,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Company">
-
+                android:hint="Công ty">
                 <com.google.android.material.textfield.TextInputEditText
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_business_24"
                     android:drawablePadding="10dp"
                     android:text="Ptit Software"
-
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Position">
+                android:hint="Vị trí">
 
                 <com.google.android.material.textfield.TextInputEditText
 
@@ -121,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Address">
+                android:hint="Địa chỉ">
 
                 <com.google.android.material.textfield.TextInputEditText
 
@@ -137,8 +134,8 @@
                 android:layout_width="374dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/bungee"
-                android:text="Update Information"
+                android:fontFamily="@font/impact"
+                android:text="Cập nhật thông tin làm việc"
                 android:textColor="@color/white" />
 
             <Button
@@ -146,8 +143,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/bungee"
-                android:text="Update Profile"
+                android:fontFamily="@font/impact"
+                android:text="Cập nhật thông tin cá nhân"
                 android:textColor="@color/white" />
 
             <Button
@@ -155,8 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/bungee"
-                android:text="Update Password"
+                android:fontFamily="@font/impact"
+                android:text="Cập nhật mật khẩu"
                 android:textColor="@color/white" />
 
             <Button
@@ -164,8 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/bungee"
-                android:text="Logout"
+                android:fontFamily="@font/impact"
+                android:text="Đăng xuất"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
