@@ -42,6 +42,7 @@
                 android:fontFamily="@font/impact"
                 android:includeFontPadding="false"
                 android:text="rikimll"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
@@ -53,6 +54,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/cardView"
                 android:text="kiki"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
         </RelativeLayout>
@@ -134,7 +136,6 @@
                 android:layout_width="374dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/impact"
                 android:text="Cập nhật thông tin làm việc"
                 android:textColor="@color/white" />
 
@@ -143,7 +144,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/impact"
                 android:text="Cập nhật thông tin cá nhân"
                 android:textColor="@color/white" />
 
@@ -152,7 +152,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/impact"
                 android:text="Cập nhật mật khẩu"
                 android:textColor="@color/white" />
 
@@ -161,7 +160,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#57606f"
-                android:fontFamily="@font/impact"
                 android:text="Đăng xuất"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

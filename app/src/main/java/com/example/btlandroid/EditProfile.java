@@ -38,6 +38,7 @@ public class EditProfile extends AppCompatActivity {
     EditText profileFullName,profileEmail,profilePhone, displayName;
     ImageView profileImageView;
     Button saveBtn;
+    Uri imageUri;
 
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -121,10 +122,16 @@ public class EditProfile extends AppCompatActivity {
                 // update display name
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                         .setDisplayName(displayName.getText().toString())
+                        .setPhotoUri(imageUri)
                         .build();
                 user.updateProfile(profileUpdates);
 
                 startActivity(new Intent(getApplicationContext(),Profile.class));
+                if(imageUri != null){
+                    uploadImageToFirebase(imageUri);
+                }else{
+                    return;
+                }
             }
         });
 
@@ -133,7 +140,6 @@ public class EditProfile extends AppCompatActivity {
         profilePhone.setText(phone);
 
 
-        Log.d("TAG", "onCreate: " + fullName + " " + email + " " + phone);
     }
 
 
@@ -142,9 +148,8 @@ public class EditProfile extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1000){
             if(resultCode == Activity.RESULT_OK){
-                Uri imageUri = data.getData();
-                //profileImage.setImageURI(imageUri);
-                uploadImageToFirebase(imageUri);
+                imageUri = data.getData();
+                Picasso.get().load(imageUri).into(profileImageView);
             }
         }
 
@@ -159,7 +164,6 @@ public class EditProfile extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Picasso.get().load(uri).into(profileImageView);
-                        Log.d("uri", String.valueOf(uri));
                     }
                 });
             }
