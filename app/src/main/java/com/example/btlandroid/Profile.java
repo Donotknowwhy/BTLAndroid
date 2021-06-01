@@ -43,15 +43,14 @@ import java.util.Map;
 public class Profile extends AppCompatActivity {
 
     private static final int GALLERY_INTENT_CODE = 1023 ;
-    TextView name, mail, fullName1,email1,phone1,verifyMsg1;
-    TextInputLayout fullName,email,phoneNo,password;
+    TextView name, mail;
+    TextInputLayout company, position,id, address;
     Button logout,update, resetPassLocal,changeProfileImage;
     ImageView img;
     FirebaseUser user;
     FirebaseAuth mAuth;
     Uri photoUrl;
     private GoogleSignInClient mGoogleSignInClient;
-    String _USERNAME, _EMAIL, _PHONENO, _PASSWORD, _NAME;
 
     DatabaseReference reference;
     StorageReference storageReference;
@@ -72,15 +71,14 @@ public class Profile extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.profile_image);
 
 
-        fullName = findViewById(R.id.full_name_profile);
-        email = findViewById(R.id.email_profile);
-        phoneNo = findViewById(R.id.phone_no_profile);
-        password = findViewById(R.id.password_profile);
+        company = findViewById(R.id.full_name_profile);
+        position = findViewById(R.id.email_profile);
+        id = findViewById(R.id.phone_no_profile);
+        address = findViewById(R.id.password_profile);
         update = findViewById(R.id.btnUpdate);
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){
             StorageReference profileRef = storageReference.child("users/"+user.getUid()+"/profile.jpg");
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -106,8 +104,6 @@ public class Profile extends AppCompatActivity {
                         .centerCrop()
                         .into(img);
 
-                Log.d("url", String.valueOf(photoUrl));
-//            fullName.setTe(signInAccount.getDisplayName());
             }
         }
 
@@ -135,8 +131,6 @@ public class Profile extends AppCompatActivity {
             update();
         });
 
-
-
         changeProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,31 +151,30 @@ public class Profile extends AppCompatActivity {
                 final EditText resetPassword = new EditText(v.getContext());
 
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-                passwordResetDialog.setTitle("Reset Password ?");
-                passwordResetDialog.setMessage("Enter New Password > 6 Characters long.");
+                passwordResetDialog.setTitle("Đổi mật khẩu");
+                passwordResetDialog.setMessage("Nhập mật khẩu lớn >= 6 từ");
                 passwordResetDialog.setView(resetPassword);
 
-                passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                passwordResetDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // extract the email and send reset link
-                        Log.d("user", String.valueOf(user));
                         String newPassword = resetPassword.getText().toString();
                         user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(Profile.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Profile.this, "Mật khẩu thay đổi thành công", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Profile.this, "Password Reset Failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Profile.this, "Mật khẩu thay đổi thất bại", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
 
-                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                passwordResetDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // close
@@ -198,12 +191,12 @@ public class Profile extends AppCompatActivity {
 
     public void update() {
         Map<String, Object> mapValue = new HashMap<>();
-        mapValue.put("Company", fullName.getEditText().getText().toString());
-        mapValue.put("Position", email.getEditText().getText().toString());
-        mapValue.put("Address", password.getEditText().getText().toString());
-        mapValue.put("ID", phoneNo.getEditText().getText().toString());
+        mapValue.put("Company", company.getEditText().getText().toString());
+        mapValue.put("Position", position.getEditText().getText().toString());
+        mapValue.put("Address", address.getEditText().getText().toString());
+        mapValue.put("ID", id.getEditText().getText().toString());
         DatabaseReference dbf = reference.child(mAuth.getCurrentUser().getUid());
         dbf.updateChildren(mapValue);
-        Toast.makeText(Profile.this, "Saved.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Profile.this, "Đã lưu.", Toast.LENGTH_SHORT).show();
     }
 }
