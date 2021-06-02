@@ -44,7 +44,6 @@ public class Profile extends AppCompatActivity {
 
     private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView name, mail;
-    TextInputLayout company, position,id, address;
     Button logout,update, resetPassLocal,changeProfileImage;
     ImageView img;
     FirebaseUser user;
@@ -71,10 +70,6 @@ public class Profile extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.profile_image);
 
 
-        company = findViewById(R.id.full_name_profile);
-        position = findViewById(R.id.email_profile);
-        id = findViewById(R.id.phone_no_profile);
-        address = findViewById(R.id.password_profile);
         update = findViewById(R.id.btnUpdate);
 
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -127,8 +122,14 @@ public class Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        update.setOnClickListener(v -> {
-            update();
+
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), EditInfo.class);
+                startActivity(i);
+            }
         });
 
         changeProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -189,14 +190,5 @@ public class Profile extends AppCompatActivity {
     }
 
 
-    public void update() {
-        Map<String, Object> mapValue = new HashMap<>();
-        mapValue.put("Company", company.getEditText().getText().toString());
-        mapValue.put("Position", position.getEditText().getText().toString());
-        mapValue.put("Address", address.getEditText().getText().toString());
-        mapValue.put("ID", id.getEditText().getText().toString());
-        DatabaseReference dbf = reference.child(mAuth.getCurrentUser().getUid());
-        dbf.updateChildren(mapValue);
-        Toast.makeText(Profile.this, "Đã lưu.", Toast.LENGTH_SHORT).show();
-    }
+
 }
