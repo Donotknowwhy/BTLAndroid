@@ -111,7 +111,7 @@ public class EditProfile extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                Toast.makeText(EditProfile.this, "Đã cập nhật trang cá nhân", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditProfile.this, "Đã cập nhật thông tin cá nhân", Toast.LENGTH_SHORT).show();
                                 if (imageUri != null) {
                                     uploadImageToFirebase(imageUri);
                                 } else {

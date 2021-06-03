@@ -81,7 +81,7 @@ public class EditInfo extends AppCompatActivity {
         dbf.updateChildren(mapValue).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(EditInfo.this, "Đã lưu.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditInfo.this, "Đã cập nhật thông tin làm việc", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), Profile.class));
             }
         });
