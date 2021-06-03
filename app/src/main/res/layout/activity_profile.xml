@@ -93,6 +93,14 @@
                 android:text="Cập nhật mật khẩu"
                 android:textColor="@color/white" />
 
+            <Button
+                android:id="@+id/deleteBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#57606f"
+                android:text="Xóa tài khoản"
+                android:textColor="@color/white" />
+
 
             <Button
                 android:id="@+id/logout"

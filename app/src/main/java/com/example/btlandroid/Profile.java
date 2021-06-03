@@ -24,8 +24,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +46,7 @@ public class Profile extends AppCompatActivity {
 
     private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView name, mail;
-    Button logout,update, resetPassLocal,changeProfile;
+    Button logout,update, resetPassLocal,changeProfile, deleteBtn;
     ImageView img;
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -63,6 +65,7 @@ public class Profile extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("users");
         changeProfile = findViewById(R.id.changeProfile);
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
+        deleteBtn = findViewById(R.id.deleteBtn);
 
         logout = findViewById(R.id.logout);
         name = findViewById(R.id.name);
@@ -142,13 +145,50 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext());
+                dialog.setTitle("Xóa tài khoản");
+                dialog.setMessage("Bạn có chắc muốn xóa tài khoản không?");
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        user.delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(Profile.this, "Xóa tài khoản thành công", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    startActivity(intent);
+                                }else{
+                                    Toast.makeText(Profile.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+
+                dialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // close
+                    }
+                });
+
+                dialog.create().show();
+
+            }
+        });
+
         resetPassLocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final EditText resetPassword = new EditText(v.getContext());
+                EditText resetPassword = new EditText(v.getContext());
 
-                final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Đổi mật khẩu");
                 passwordResetDialog.setMessage("Nhập mật khẩu lớn >= 6 từ");
                 passwordResetDialog.setView(resetPassword);
