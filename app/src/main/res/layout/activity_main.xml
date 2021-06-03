@@ -99,7 +99,7 @@
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
         android:elevation="8dp"
-        android:textSize="13sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

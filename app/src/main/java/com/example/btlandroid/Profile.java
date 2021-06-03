@@ -44,7 +44,7 @@ public class Profile extends AppCompatActivity {
 
     private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView name, mail;
-    Button logout,update, resetPassLocal,changeProfileImage;
+    Button logout,update, resetPassLocal,changeProfile;
     ImageView img;
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -61,7 +61,7 @@ public class Profile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("users");
-        changeProfileImage = findViewById(R.id.changeProfile);
+        changeProfile = findViewById(R.id.changeProfile);
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
 
         logout = findViewById(R.id.logout);
@@ -132,15 +132,14 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        changeProfileImage.setOnClickListener(new View.OnClickListener() {
+        changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // open gallery
                 Intent i = new Intent(v.getContext(),EditProfile.class);
-            i.putExtra("fullName", name.getText().toString());
+            i.putExtra("fName", name.getText().toString());
             i.putExtra("email", mail.getText().toString());
             i.putExtra("phone","1234");
-
                 startActivity(i);
             }
         });

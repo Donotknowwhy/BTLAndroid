@@ -51,7 +51,7 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         Intent data = getIntent();
-        String fullName = data.getStringExtra("fullName");
+        String fullName = data.getStringExtra("fName");
         String email = data.getStringExtra("email");
         String phone = data.getStringExtra("phone");
 
@@ -68,6 +68,11 @@ public class EditProfile extends AppCompatActivity {
         profilePhone = findViewById(R.id.profilePhoneNo);
         profileImageView = findViewById(R.id.profileImageView);
         saveBtn = findViewById(R.id.saveProfileInfo);
+
+        profileEmail.setText(email);
+        profileFullName.setText(fullName);
+        profilePhone.setText(phone);
+        displayName.setText(user.getDisplayName());
 
         StorageReference profileRef = storageReference.child("users/"+user.getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -88,6 +93,10 @@ public class EditProfile extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName.getText().toString())
+                        .build();
+                user.updateProfile(profileUpdates);
                 if(profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || profilePhone.getText().toString().isEmpty() || displayName.getText().toString().isEmpty()){
                     Toast.makeText(EditProfile.this, "Hãy điền đủ các trường! ", Toast.LENGTH_SHORT).show();
                     return;
@@ -105,9 +114,13 @@ public class EditProfile extends AppCompatActivity {
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+
                                 Toast.makeText(EditProfile.this, "Đã cập nhật trang cá nhân", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                                finish();
+                                if (imageUri != null) {
+                                    uploadImageToFirebase(imageUri);
+                                } else {
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                }
                             }
                         });
 
@@ -120,25 +133,11 @@ public class EditProfile extends AppCompatActivity {
                 });
 
                 // update display name
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(displayName.getText().toString())
-                        .setPhotoUri(imageUri)
-                        .build();
-                user.updateProfile(profileUpdates);
 
-                startActivity(new Intent(getApplicationContext(),Profile.class));
-                if(imageUri != null){
-                    uploadImageToFirebase(imageUri);
-                }else{
-                    return;
-                }
             }
         });
 
-        profileEmail.setText(email);
-        profileFullName.setText(fullName);
-        profilePhone.setText(phone);
-        displayName.setText(user.getDisplayName());
+
     }
 
 
@@ -162,14 +161,14 @@ public class EditProfile extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(profileImageView);
+                        startActivity(new Intent(getApplicationContext(),Profile.class));
                     }
                 });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
 
