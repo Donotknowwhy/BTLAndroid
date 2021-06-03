@@ -78,7 +78,13 @@ public class EditInfo extends AppCompatActivity {
         mapValue.put("Address", address.getEditText().getText().toString());
         mapValue.put("ID", id.getEditText().getText().toString());
         DatabaseReference dbf = reference.child(mAuth.getCurrentUser().getUid());
-        dbf.updateChildren(mapValue);
-        Toast.makeText(EditInfo.this, "Đã lưu.", Toast.LENGTH_SHORT).show();
+        dbf.updateChildren(mapValue).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(EditInfo.this, "Đã lưu.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), Profile.class));
+            }
+        });
+
     }
 }

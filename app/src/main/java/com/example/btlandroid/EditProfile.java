@@ -119,7 +119,7 @@ public class EditProfile extends AppCompatActivity {
                                 if (imageUri != null) {
                                     uploadImageToFirebase(imageUri);
                                 } else {
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), Profile.class));
                                 }
                             }
                         });
@@ -131,9 +131,6 @@ public class EditProfile extends AppCompatActivity {
                         Toast.makeText(EditProfile.this,   e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
-                // update display name
-
             }
         });
 
