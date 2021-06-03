@@ -137,9 +137,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 // open gallery
                 Intent i = new Intent(v.getContext(),EditProfile.class);
-            i.putExtra("fName", "Tên");
-            i.putExtra("email", mail.getText().toString());
-            i.putExtra("phone","1234");
+                i.putExtra("email", mail.getText().toString());
                 startActivity(i);
             }
         });

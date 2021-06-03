@@ -39,7 +39,7 @@ public class EditProfile extends AppCompatActivity {
     ImageView profileImageView;
     Button saveBtn;
     Uri imageUri;
-
+    String fullName,phone;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -51,9 +51,7 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         Intent data = getIntent();
-        String fullName = data.getStringExtra("fName");
         String email = data.getStringExtra("email");
-        String phone = data.getStringExtra("phone");
 
         // define instance of firebase
         fAuth = FirebaseAuth.getInstance();
@@ -70,8 +68,6 @@ public class EditProfile extends AppCompatActivity {
         saveBtn = findViewById(R.id.saveProfileInfo);
 
         profileEmail.setText(email);
-        profileFullName.setText(fullName);
-        profilePhone.setText(phone);
         displayName.setText(user.getDisplayName());
 
         StorageReference profileRef = storageReference.child("users/"+user.getUid()+"/profile.jpg");
