@@ -44,7 +44,6 @@ import java.util.Map;
 
 public class Profile extends AppCompatActivity {
 
-    private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView name, mail;
     Button logout,update, resetPassLocal,changeProfile, deleteBtn;
     ImageView img;
@@ -218,9 +217,7 @@ public class Profile extends AppCompatActivity {
                         // close
                     }
                 });
-
                 passwordResetDialog.create().show();
-
             }
         });
 

@@ -93,6 +93,7 @@ public class EditProfile extends AppCompatActivity {
                         .setDisplayName(displayName.getText().toString())
                         .build();
                 user.updateProfile(profileUpdates);
+
                 if(profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || profilePhone.getText().toString().isEmpty() || displayName.getText().toString().isEmpty()){
                     Toast.makeText(EditProfile.this, "Hãy điền đủ các trường! ", Toast.LENGTH_SHORT).show();
                     return;

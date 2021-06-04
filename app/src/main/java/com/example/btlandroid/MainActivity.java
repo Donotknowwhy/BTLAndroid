@@ -73,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
         forgotTextLink = findViewById(R.id.forgotPassword);
         mAuth = FirebaseAuth.getInstance();
 
-
         createRequest();
-
 
         findViewById(R.id.google_signIn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                         mAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(MainActivity.this, "Check email của bạn để lấy lại mẫy khẩu", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Check email của bạn để lấy lại mật khẩu", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -219,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), Profile.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(MainActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Lỗi", Toast.LENGTH_SHORT).show();
                         }
 
                     }
