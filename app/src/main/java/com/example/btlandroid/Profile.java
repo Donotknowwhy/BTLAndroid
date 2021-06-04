@@ -45,7 +45,7 @@ import java.util.Map;
 public class Profile extends AppCompatActivity {
 
     TextView name, mail;
-    Button logout,update, resetPassLocal,changeProfile, deleteBtn;
+    Button logoutBtn, resetPassBtn,changeProfileBtn, deleteBtn;
     ImageView img;
     FirebaseUser user;
     FirebaseAuth mAuth;
@@ -62,19 +62,17 @@ public class Profile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("users");
-        changeProfile = findViewById(R.id.changeProfile);
-        resetPassLocal = findViewById(R.id.resetPasswordLocal);
-        deleteBtn = findViewById(R.id.deleteBtn);
+        storageReference = FirebaseStorage.getInstance().getReference();
 
-        logout = findViewById(R.id.logout);
+        changeProfileBtn = findViewById(R.id.changeProfile);
+        resetPassBtn = findViewById(R.id.resetPasswordLocal);
+        deleteBtn = findViewById(R.id.deleteBtn);
+        logoutBtn = findViewById(R.id.logout);
         name = findViewById(R.id.name);
         mail = findViewById(R.id.mail);
         img = (ImageView) findViewById(R.id.profile_image);
 
 
-        update = findViewById(R.id.btnUpdate);
-
-        storageReference = FirebaseStorage.getInstance().getReference();
 
         if(user!=null){
             StorageReference profileRef = storageReference.child("users/"+user.getUid()+"/profile.jpg");
@@ -105,7 +103,7 @@ public class Profile extends AppCompatActivity {
         }
 
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
@@ -126,15 +124,8 @@ public class Profile extends AppCompatActivity {
         });
 
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), EditInfo.class);
-                startActivity(i);
-            }
-        });
 
-        changeProfile.setOnClickListener(new View.OnClickListener() {
+        changeProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // open gallery
@@ -158,7 +149,6 @@ public class Profile extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(Profile.this, "Xóa tài khoản thành công", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
                                 }else{
@@ -181,7 +171,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        resetPassLocal.setOnClickListener(new View.OnClickListener() {
+        resetPassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

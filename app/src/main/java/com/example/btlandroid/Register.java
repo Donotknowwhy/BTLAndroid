@@ -89,22 +89,6 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-
-                            // send verification link
-
-                            FirebaseUser fuser = fAuth.getCurrentUser();
-                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(Register.this, "Tin nhắn xác thực email đã được gửi.", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d("tag", "Lỗi! " + e.getMessage());
-                                }
-                            });
-
                             Toast.makeText(Register.this, "Tài khoản đã được đăng ký thành công.", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
@@ -113,7 +97,7 @@ public class Register extends AppCompatActivity {
                             user.put("email",email);
                             user.put("phone",phone);
                             documentReference.set(user);
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(),Profile.class));
 
                         }else {
                             Toast.makeText(Register.this, "Lỗi ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

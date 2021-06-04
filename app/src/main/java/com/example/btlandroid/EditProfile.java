@@ -35,11 +35,10 @@ import java.util.Map;
 
 public class EditProfile extends AppCompatActivity {
 
-    EditText profileFullName,profileEmail,profilePhone, displayName;
+    EditText profileFullName, profileEmail, profilePhone, displayName;
     ImageView profileImageView;
     Button saveBtn;
     Uri imageUri;
-    String fullName,phone;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -111,10 +110,10 @@ public class EditProfile extends AppCompatActivity {
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-
                                 Toast.makeText(EditProfile.this, "Đã cập nhật thông tin cá nhân", Toast.LENGTH_SHORT).show();
                                 if (imageUri != null) {
                                     uploadImageToFirebase(imageUri);
+                                    Log.d("uid", user.getUid());
                                 } else {
                                     startActivity(new Intent(getApplicationContext(), Profile.class));
                                 }
@@ -131,7 +130,6 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
-
     }
 
 
@@ -144,7 +142,6 @@ public class EditProfile extends AppCompatActivity {
                 Picasso.get().load(imageUri).into(profileImageView);
             }
         }
-
     }
 
     private void uploadImageToFirebase(Uri imageUri) {
@@ -165,6 +162,6 @@ public class EditProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Lỗi", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
 }
